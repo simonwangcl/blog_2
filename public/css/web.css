@@ -1,0 +1,202 @@
+/*最上面容器里的字体*/
+.slogan {
+    padding-right: 25px;
+    text-align: center;
+    font: 200% 'tangerine', arial;
+    color: #111;
+}
+
+/*最上面容器里的下padding*/
+#container-jumbotron .jumbotron {
+    padding-bottom: 24px;
+}
+
+p.sketch {
+    text-indent: 2em;
+}
+
+.sketch a{
+    color: #000000;
+    font-size: medium;
+}
+
+div.page-links {
+    text-align: center;
+}
+
+.page-header {
+    margin-top: 20px;
+}
+
+#mainnav li .sub-menu {
+    text-align: left;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    z-index: 10;
+    display: none;
+    font-size: 14px;
+    padding: 6px 20px 5px 20px;
+    border: 1px solid #232323;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    background: #222
+}
+
+#mainnav li .sub-menu li {
+    float: none;
+    display: block;
+    color: #f1f1f1;
+    height: 35px;
+    min-height: 35px;
+    width: 100%
+}
+
+#mainnav li .sub-menu li a {
+    display: inline-block;
+    line-height: 35px;
+    height: 35px;
+    color: #9d9d9d;
+    width: 100%;
+}
+
+#mainnav li .sub-menu li a:hover {
+    color: #ffffff;
+}
+
+#mainnav li .sub-menu li a, a:hover, a:visited, a:active {
+    text-decoration: none;
+}
+
+.tags1 {
+    color: #BDB7B6;
+    font-size: 12px;
+    float: left;
+}
+
+.tags2 {
+    color: #B1A9A9;
+    font-size: 13px;
+    float: left;
+}
+
+.tags3 {
+    color: #9B9191;
+    font-size: 14px;
+    float: left;
+}
+
+.tags4 {
+    color: #807474;
+    font-size: 15px;
+    float: left;
+}
+
+.tags5 {
+    color: #6D6363;
+    font-size: 16px;
+    float: left;
+}
+
+.tags6 {
+    color: #5D5554;
+    font-size: 17px;
+    float: left;
+}
+
+.tags7 {
+    color: #504948;
+    font-size: 18px;
+    float: left;
+}
+
+.tags8 {
+    color: #403A3A;
+    font-size: 19px;
+    float: left;
+}
+
+.tags9 {
+    color: #353030;
+    font-size: 20px;
+    float: left;
+}
+
+.tags10 {
+    color: #282424;
+    font-size: 21px;
+    float: left;
+}
+
+.tags11 {
+    color: #181515;
+    font-size: 22px;
+    float: left;
+}
+
+.tags12 {
+    color: #050404;
+    font-size: 12px;
+    float: left;
+}
+
+#menuComment img{
+    width: 60px;
+}
+
+.article-cover img{
+    width: 195px;
+}
+
+#article-page .title{
+    font-size: 25px;
+    text-align: center;
+}
+
+#article-page .info{
+    text-align: center;
+}
+
+#article-page .point{
+    text-align: center;
+}
+
+.article-message{
+    font-size: 20px;
+    text-align: center;
+}
+
+#login-logo span{
+    margin-right: 20px;
+}
+
+#login-logo span img{
+    margin-top: 13px;
+}
+
+#welcome{
+    color: #ffffff;
+    margin-right: 20px;
+    height: 50px;
+}
+#welcome img{
+    width: 40px;
+    height: 40px;
+    border-radius:25px;
+    line-height: 50px;
+}
+#welcome span{
+    height: 50px;
+    line-height: 50px;
+}
+#welcome a{
+    text-decoration: none;
+    display: inline-block;
+    color: #ffffff;
+    width: 30px;
+    height: 30px;
+    line-height: 50px;
+}
+#welcome a i{
+    font-size: 20px;
+}

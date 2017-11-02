@@ -43,8 +43,7 @@ class ImageHelper
             }
 
             if (!$src_img) {
-                $msg = "读取原图片失败！";
-                return;
+                return ['state' => false, 'msg' => "读取原图片失败！"];
             }
 
             $size = getimagesize($src);
@@ -128,14 +127,15 @@ class ImageHelper
 
             if ($result) {
                 if (!imagepng($dst_img, $dst)) {
-                    $msg = "保存裁剪图片失败！";
+                    return ['state' => false, 'msg' => "保存裁剪图片失败！"];
                 }
             } else {
-                $msg = "裁剪图片失败！";
+                return ['state' => false, 'msg' => "裁剪图片失败！"];
             }
 
             imagedestroy($src_img);
             imagedestroy($dst_img);
+            return ['state' => true];
         }
     }
 }

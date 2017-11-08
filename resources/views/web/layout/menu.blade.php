@@ -55,7 +55,7 @@
                 @foreach($friendLink as $friend)
                     <ul class="list-unstyled list-inline">
                         <li class="tags{{ rand(1,12) }}">
-                            <a href="{{ $friend->href }}">{{ $friend->name }}</a>
+                            <a href="{{ $friend->href }}" target="_blank">{{ $friend->name }}</a>
                         </li>
                     </ul>
                 @endforeach

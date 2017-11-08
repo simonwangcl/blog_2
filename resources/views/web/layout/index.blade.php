@@ -23,14 +23,18 @@
 <body>
 @include('web.layout.header')
 
-@include('web.layout.logo')
-<div class="container">
+@section('logo')
+    @include('web.layout.logo')
+@show
+{{--根据ID的不同，配置不同的CSS，现在是首页及详情页的区别--}}
+<div class="container" id="@yield('content-id','index-content')">
     <div class="row">
         @section('content')
         @show
         @include('web.layout.menu')
     </div>
 </div>
+
 @include('web.layout.footer')
 </body>
 <!-- 引入JQuery文件 -->

@@ -1,4 +1,7 @@
 @extends('web.layout.index')
+@section('logo')
+@show
+@section('content-id','post-content')
 @section('content')
     <div class="col-xs-12 col-sm-12 col-md-8">
         <div class="row">
@@ -29,16 +32,12 @@
                 <p>
             </div>
         </div>
-        @if($show)
-        <div>
-            测试
-        </div>
-        @endif
     </div>
 @endsection
 @section('script')
     <script>
         $(document).ready(function () {
+//            点赞
             $('body').on('click', '.point-display', function () {
                 if ($('#article-page').attr('user-id') != 0) {
                     var html = $('.point-num').html();

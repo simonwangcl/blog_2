@@ -74,7 +74,7 @@
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut"
     }
-    var destroy = function(){
+    var destroy = function () {
         var url = '/admin/login/' +{{ $userModel['id'] }};
         $.ajax({
             type: 'delete',
@@ -116,13 +116,15 @@
         var that = $(this);
         var master = that.children("a:first-child");
         var slaver = that.children("ul");
-        if (master.attr('href') == routeName) {
+        var href = master.attr('href');
+        if (href == routeName.substr(0, href.length)) {
             master.css('background-color', '#293846');
             master.css('color', 'white');
         }
         if (slaver.length) {
             slaver.find('a').each(function () {
-                if ($(this).attr('href') == routeName) {
+                var href = $(this).attr('href');
+                if (href == routeName.substr(0, href.length)) {
                     $(this).css('background-color', '#293846');
                     $(this).css('color', 'white');
                     that.addClass("active");

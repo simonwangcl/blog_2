@@ -33,12 +33,13 @@ class ViewServiceProvider extends ServiceProvider
             });
 //            方法名称
             view()->composer('*', function ($view) {
-                $view->with('routeName', rtrim('/admin/' . substr(\Route::currentRouteName(), 0, strpos(\Route::currentRouteName(), '.')), '/'));
+//                $view->with('routeName', rtrim('/admin/' . substr(\Route::currentRouteName(), 0, strpos(\Route::currentRouteName(), '.')), '/'));
+                $view->with('routeName', '/' . \Request::path());
             });
         } else {//前台
 //            用户数据
             view()->composer('*', function ($view) {
-                $view->with('userModel', SessionHelper::get() ? : QqSessionHelper::get());
+                $view->with('userModel', SessionHelper::get() ?: QqSessionHelper::get());
             });
 //            所有分类
             view()->composer('*', function ($view) {

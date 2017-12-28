@@ -74,6 +74,29 @@
         </div>
     </div>
     <div class="form-group">
+        <label class="col-sm-3 control-label">网盘地址：</label>
+        <div class="col-sm-8">
+            <input id="cloud" name="cloud" class="form-control" type="text" maxlength="255">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">网盘密码：</label>
+        <div class="col-sm-8">
+            <input id="password" name="password" class="form-control" type="text" maxlength="10">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">视频教程：</label>
+        <div class="col-sm-8">
+            <span class="radio i-checks" style="display: inline;">
+                <label><input type="radio" checked="checked" value="0" name="video"> <i></i> 无 </label>
+            </span>
+            <span class="radio i-checks" style="display: inline;">
+                <label><input type="radio" value="1" name="video"> <i></i> 有 </label>
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
         <div class="col-sm-8 col-sm-offset-3">
             <button class="btn btn-block btn-primary" type="submit">提 交</button>
         </div>
@@ -134,6 +157,9 @@
                 $('#name').val('');
                 $('#path').val('');
                 $('#size').val('');
+                $('#cloud').val('');
+                $('#password').val('');
+                $('input[type="radio"][value="0"]').iCheck('check');
                 $('select[name="pid"]').children('option').each(function () {
                     $(this).prop('selected', false);
                 }).eq(0).prop("selected", "selected");
@@ -145,6 +171,9 @@
                 $('#name').val($(this).attr('data-name'));
                 $('#path').val($(this).attr('data-path'));
                 $('#size').val($(this).attr('data-size'));
+                $('#cloud').val($(this).attr('data-cloud'));
+                $('#password').val($(this).attr('data-password'));
+                $('input[type="radio"]').eq($(this).attr('data-video')).iCheck('check');
                 $('select[name="pid"]').find("option[value=" + $(this).attr('data-pid') + "]").attr("selected", true);
                 $('.ajax-form').attr('action', '/admin/tools/book/' + $(this).attr('data-id'));
             });
@@ -157,6 +186,11 @@
                     toastr.error(result.message);
                 }
             })
+
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
         });
     </script>
 @endsection

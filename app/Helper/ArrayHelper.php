@@ -72,7 +72,9 @@ class ArrayHelper
             $html .= '</span><span style="float:right;font-weight:normal">';
             $html .= '<a data-toggle="modal" href="#modal-form" class="book_edit" data-id="' . $value['id'] . '"
             data-pid="' . $value['pid'] . '" data-name="' . $value['name'] . '" 
-            data-path="' . $value['path'] . '" data-size="' . $value['size'] . '"> 编辑</a>';
+            data-path="' . $value['path'] . '" data-size="' . $value['size'] . '"
+            data-cloud="' . $value['cloud'] . '" data-password="' . $value['password'] . '"
+            data-video="' . $value['video'] . '"> 编辑</a>';
             if (!count($value['children'])) {
                 $html .= '<a class="ajax-delete" href="/admin/tools/book/' . $value['id'] . '" method="delete" confirm="确定删除该分类/书籍吗？"> 删除</a>';
             }

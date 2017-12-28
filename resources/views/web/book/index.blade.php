@@ -19,40 +19,44 @@
         <div class="col-lg-8 col-lg-offset-2">
             <div class="ibox">
                 <div class="ibox-content">
-                    <div class="pull-right">
+<div class="pull-right">
 
-                        <form action="/book" method="get">
-                            类型：
-                            <select name="type" style="margin: 0;padding: 0;height: 26px">
-                                <option value="">-- 全部 --</option>
-                                @foreach($types as $type)
-                                    @if($type->pid == 0)
-                                        <option value="{{ $type->id }}">{{ $type->name }}</option>
-                                    @endif
-                                @endforeach
-                            </select>
-                            书名：<input type="text" name="name" value="{{ $params['name'] or '' }}"
-                                      style="margin: 0;padding: 0;height: 26px">
-                            <button class="btn btn-white btn-xs" type="submit">搜 索</button>
-
-                        </form>
-                    </div>
-                    <div class="text-center article-title">
-                        @foreach($books as $book)
-                            @if($book->children->toArray())
-                                <p><h2>{{ $book->name }}</h2></p>
-                                @foreach($book->children as $child)
-                                    <p style="margin-left: 30px">
-                                        {{ $child->name }}.{{pathinfo($child->path, PATHINFO_EXTENSION) }}&nbsp;&nbsp;&nbsp;&nbsp;
-                                        大小：{{ $child->size }}&nbsp;&nbsp;&nbsp;&nbsp;
-                                        上传时间：{{ $child->created_at }}&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <a href="javascript:void(0);" class="download"
-                                           data-id="{{ $child->id }}">点击下载</a>
-                                    </p>
-                                @endforeach
-                            @endif
-                        @endforeach
-                    </div>
+    <form action="/book" method="get">
+        类型：
+        <select name="type" style="margin: 0;padding: 0;height: 26px">
+            <option value="">-- 全部 --</option>
+            @foreach($types as $type)
+                @if($type->pid == 0)
+                    <option value="{{ $type->id }}">{{ $type->name }}</option>
+                @endif
+            @endforeach
+        </select>
+        书名：<input type="text" name="name" value="{{ $params['name'] or '' }}" style="margin: 0;padding: 0;height: 26px">
+        <button class="btn btn-white btn-xs" type="submit">搜 索</button>
+    </form>
+</div>
+<div class="text-center article-title">
+    @foreach($books as $book)
+        @if($book->children->toArray())
+            <p><h2>{{ $book->name }}</h2></p>
+            @foreach($book->children as $child)
+                <p style="margin-left: 30px">
+                    {{ $child->name }}.{{pathinfo($child->path, PATHINFO_EXTENSION) }}
+                    @if($child->size)
+                        &nbsp;&nbsp;&nbsp;&nbsp;大小：{{ $child->size }}
+                    @endif
+                    @if($child->path)
+                        &nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" class="download" data-id="{{ $child->id }}">本地下载</a>
+                    @endif
+                    @if($child->cloud)
+                        &nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ $child->cloud }}" target="_blank">网盘下载</a>
+                        （{{ $child->password }}@if($child->video)，内含视频@endif）
+                    @endif
+                </p>
+            @endforeach
+        @endif
+    @endforeach
+</div>
                 </div>
             </div>
         </div>

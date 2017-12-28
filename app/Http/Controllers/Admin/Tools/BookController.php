@@ -52,6 +52,9 @@ class BookController extends Controller
         $pid = $request->input('pid');
         $path = $request->input('path');
         $size = $request->input('size');
+        $cloud = $request->input('cloud');
+        $password = $request->input('password');
+        $video = $request->input('video');
 
         if ($pid) {
             $cate = BookModel::where('id', $pid)->first();
@@ -81,6 +84,11 @@ class BookController extends Controller
                 if ($size) {
                     $book->size = $size;
                 }
+                if ($cloud) {
+                    $book->cloud = $cloud;
+                }
+                $book->password = $password;
+                $book->video = $video;
                 $book->save();
 
                 return response()->json(['state' => 'success', 'message' => '分类/书籍添加成功！']);
@@ -147,6 +155,9 @@ class BookController extends Controller
             $name = $request->input('name');
             $path = $request->input('path');
             $size = $request->input('size');
+            $cloud = $request->input('cloud');
+            $password = $request->input('password');
+            $video = $request->input('video');
 
             if (mb_strlen($name) > 50) {
                 return response()->json(['state' => 'error', 'message' => '类名/书名超出长度！']);
@@ -165,16 +176,14 @@ class BookController extends Controller
                     if (!$book) {
                         $book = BookModel::find($id);
                     }
-                    if ($pid) {
-                        $book->pid = $pid;
-                    }
+
+                    $book->pid = $pid;
                     $book->name = $name;
-                    if ($path) {
-                        $book->path = $path;
-                    }
-                    if ($size) {
-                        $book->size = $size;
-                    }
+                    $book->path = $path;
+                    $book->size = $size;
+                    $book->cloud = $cloud;
+                    $book->password = $password;
+                    $book->video = $video;
                     $book->save();
 
                     return response()->json(['state' => 'success', 'message' => '分类/书籍修改成功！']);

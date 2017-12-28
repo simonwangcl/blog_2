@@ -68,7 +68,7 @@ class BookController extends Controller
                 return response()->json(['state' => 'error', 'message' => '类名/书名已存在！']);
             } else {
                 $realPath = base_path() . $path;
-                if (!is_dir($realPath)) {
+                if (!$pid && !is_dir($realPath)) {
                     mkdir($realPath, 0777, true);
                     chmod($realPath, 0777);
                 }
@@ -158,7 +158,7 @@ class BookController extends Controller
                     return response()->json(['state' => 'error', 'message' => '分类/书籍名称已存在！']);
                 } else {
                     $realPath = base_path() . $path;
-                    if (!is_dir($realPath)) {
+                    if (!$pid && !is_dir($realPath)) {
                         mkdir($realPath, 0777, true);
                         chmod($realPath, 0777);
                     }

@@ -10,12 +10,18 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/vue', function (){
+Route::get('/vue', function () {
     return view('vue');
 });
 
 
-Route::get('/mail', 'TestController@index');
+Route::any('/mail', 'TestController@index');
+
+Route::group(['prefix' => 'tools', 'namespace' => 'Tools'], function () {
+//    复制html代码新页面打开
+    Route::get('/html', 'HtmlController@index');
+    Route::post('/html/new', 'HtmlController@newPage');
+});
 
 Route::group(['namespace' => 'Web'], function () {
 //    首页
@@ -24,6 +30,8 @@ Route::group(['namespace' => 'Web'], function () {
     Route::resource('/post', 'PostController');
 //    个人简介
     Route::resource('/about', 'AboutController');
+//    书籍
+    Route::resource('/book', 'BookController');
 //    qq登录，退出
     Route::get('/qq', 'QqController@index');
     Route::get('/qq/login', 'QqController@login');
@@ -46,7 +54,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::resource('/', 'IndexController');
 //        个人资料
         Route::resource('/info', 'InfoController', ['only' => ['index', 'show', 'update']]);
- //        文章管理
+//        文章管理
         Route::resource('/article', 'ArticleController');
 //        数据统计
         Route::resource('/stats', 'StatsController');
@@ -65,6 +73,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::group(['namespace' => 'Set'], function () {
             Route::resource('/friend', 'FriendController');
             Route::resource('/resume', 'ResumeController');
+        });
+//        工具（小买卖）
+        Route::group(['prefix' => 'tools', 'namespace' => 'Tools'], function () {
+            Route::resource('/small', 'SmallController');
+            Route::resource('/book', 'BookController');
         });
     });
 });

@@ -73,23 +73,23 @@
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-sm-10">
-                            <h3 class="m-t-none m-b">添加角色</h3>
-                            <form class="form-horizontal m-t ajax-form" action="/admin/role" method="post">
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">角色名称：</label>
-                                    <div class="col-sm-8">
-                                        <input id="name" name="name" class="form-control" type="text" required maxlength="9" autofocus="true">
-                                        <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 9个字节之内</span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-8 col-sm-offset-3">
-                                        <button class="btn btn-block btn-primary" type="submit">提 交</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+<div class="col-sm-10">
+    <h3 class="m-t-none m-b">添加角色</h3>
+    <form class="form-horizontal m-t ajax-form" action="/admin/role" method="post">
+        <div class="form-group">
+            <label class="col-sm-3 control-label">角色名称：</label>
+            <div class="col-sm-8">
+                <input id="name" name="name" class="form-control" type="text" required maxlength="9" autofocus="true">
+                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 9个字之内</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-8 col-sm-offset-3">
+                <button class="btn btn-block btn-primary" type="submit">提 交</button>
+            </div>
+        </div>
+    </form>
+</div>
                     </div>
                 </div>
             </div>

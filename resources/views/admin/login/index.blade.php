@@ -120,11 +120,11 @@
         var result = 1;
 
         if (name.length < 2 || name.length > 30) {
-            toastr.error('帐号长度在 2-30 个字节之间！');
+            toastr.error('帐号长度在 2-30 个字之间！');
             result = 0;
         }
         if (password.length < 6 || password.length > 15) {
-            toastr.error('密码长度在 6-15 个字节之间！');
+            toastr.error('密码长度在 6-15 个字之间！');
             result = 0;
         }
         if (result) {

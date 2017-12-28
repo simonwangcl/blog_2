@@ -57,6 +57,35 @@ class ArrayHelper
         return $html;
     }
 
+    public static function arrayToHtmlBook($array)
+    {
+        $html = '<ol class="dd-list">';
+        foreach ($array as $value) {
+            $html .= '<li class="dd-item dd3-item" data-id="' . $value['id'] . '">';
+            $html .= '<div class="dd-handle dd3-handle">Drag</div><div class="dd3-content"><span> ' . $value['name'];
+            if ($value['path']) {
+                $html .= "&nbsp;&nbsp;&nbsp;&nbsp;( 路径：" . $value['path'] . " ) ";
+            }
+            if ($value['size']) {
+                $html .= "&nbsp;&nbsp;&nbsp;&nbsp;( 大小：" . $value['size'] . " ) ";
+            }
+            $html .= '</span><span style="float:right;font-weight:normal">';
+            $html .= '<a data-toggle="modal" href="#modal-form" class="book_edit" data-id="' . $value['id'] . '"
+            data-pid="' . $value['pid'] . '" data-name="' . $value['name'] . '" 
+            data-path="' . $value['path'] . '" data-size="' . $value['size'] . '"> 编辑</a>';
+            if (!count($value['children'])) {
+                $html .= '<a class="ajax-delete" href="/admin/tools/book/' . $value['id'] . '" method="delete" confirm="确定删除该分类/书籍吗？"> 删除</a>';
+            }
+            $html .= '</span></div>';
+            if (count($value['children'])) {
+                $html .= self::arrayToHtmlBook($value['children']);
+            }
+            $html .= '</li>';
+        }
+        $html .= '</ol>';
+        return $html;
+    }
+
     public static function arrayToTree($array, $pid = 0)
     {
         $tree = array();                                //每次都声明一个新数组用来放子元素

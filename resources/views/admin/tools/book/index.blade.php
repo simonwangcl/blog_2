@@ -1,7 +1,7 @@
 @extends('admin.layout.index')
-@section('title', '菜单')
+@section('title', '书籍')
 @section('link')
-
+    <link href="{{ URL::asset('/css/plugins/iCheck/custom.css') }}" rel="stylesheet">
 @endsection
 
 @section('page')
@@ -12,10 +12,10 @@
                     <div class="ibox-content">
                         <div class="pull-right">
                             <button data-toggle="modal" href="#modal-form" class="btn btn-white btn-xs"
-                                    type="button" id="menu_add">添 加</button>
+                                    type="button" id="book_add">添 加</button>
                         </div>
                         <div>
-                            <h2>菜单管理</h2>
+                            <h2>书籍管理</h2>
                         </div>
                         <div class="clients-list">
                             <div class="tab-content">
@@ -39,49 +39,46 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-sm-10">
-                            <h3 class="m-t-none m-b">添加菜单</h3>
-                            <form class="form-horizontal m-t ajax-form" action="/admin/menu" method="post">
-                                <div class="form-group" id='menu-select'>
-                                    <label class="col-sm-3 control-label">父级菜单：</label>
-                                    <div class="col-sm-8">
-                                        <select class="form-control" name="pid" autocomplete="off">
-                                            <option value="0">-请选择-</option>
-                                            @foreach($names as $id => $name)
-                                                <option value="{{$id}}">{{$name}}</option>
-                                            @endforeach
-                                        </select>
-                                        <span class="help-block m-b-none">
-                                            <i class="fa fa-info-circle"></i> 不选则为父级菜单
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">菜单名称：</label>
-                                    <div class="col-sm-8">
-                                        <input id="name" name="name" class="form-control" type="text" required maxlength="9">
-                                        <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 9个字之内</span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">菜单链接：</label>
-                                    <div class="col-sm-8">
-                                        <input id="path" name="path" class="form-control" type="text" maxlength="50">
-                                        <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 50个字之内</span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">菜单图标：</label>
-                                    <div class="col-sm-8">
-                                        <input id="icon" name="icon" class="form-control" type="text" maxlength="30">
-                                        <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 30个字之内</span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-8 col-sm-offset-3">
-                                        <button class="btn btn-block btn-primary" type="submit">提 交</button>
-                                    </div>
-                                </div>
-                            </form>
+                            <h3 class="m-t-none m-b">修改分类/书籍</h3>
+<form class="form-horizontal m-t ajax-form" action="/admin/tools/book" method="post">
+    <div class="form-group" id='book-select'>
+        <label class="col-sm-3 control-label">分类：</label>
+        <div class="col-sm-8">
+            <select class="form-control" name="pid" autocomplete="off">
+                <option value="0">-请选择-</option>
+                @foreach($names as $id => $name)
+                    <option value="{{$id}}">{{$name}}</option>
+                @endforeach
+            </select>
+            <span class="help-block m-b-none">
+            <i class="fa fa-info-circle"></i> 不选则为分类
+        </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">类名/书名：</label>
+        <div class="col-sm-8">
+            <input id="name" name="name" class="form-control" type="text" required maxlength="50">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">保存路径：</label>
+        <div class="col-sm-8">
+            <input id="path" name="path" class="form-control" type="text" maxlength="255">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">文件大小：</label>
+        <div class="col-sm-8">
+            <input id="size" name="size" class="form-control" type="text" maxlength="10">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-8 col-sm-offset-3">
+            <button class="btn btn-block btn-primary" type="submit">提 交</button>
+        </div>
+    </div>
+</form>
                         </div>
                     </div>
                 </div>
@@ -92,6 +89,7 @@
 
 @section('script')
     <script src="{{ URL::asset('/js/plugins/nestable/jquery.nestable.js') }}"></script>
+    <script src="{{ URL::asset('js/plugins/iCheck/icheck.min.js') }}"></script>
     <script>
         $(document).ready(function () {
             var info;
@@ -107,7 +105,7 @@
                     $.ajax({
                         type: "put",
                         dataType: "JSON",
-                        url: '/admin/menu/1',
+                        url: '/admin/tools/book/1',
                         data: {list: list, type: 'rank'},
                         headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}'},
                         success: function (data) {
@@ -130,27 +128,25 @@
             }).on('change', updateOutput);
             updateOutput($('#nestable3').data('output', info));
 
-
-            $('body').on('click', '#menu_add', function () {
-                $('#menu-select').show();
-                $('.m-t-none').html('添加菜单');
+            $('body').on('click', '#book_add', function () {
+                $('.m-t-none').html('添加分类/书籍');
                 $('.ajax-form').attr('method', 'post');
                 $('#name').val('');
                 $('#path').val('');
-                $('#icon').val('');
+                $('#size').val('');
                 $('select[name="pid"]').children('option').each(function () {
                     $(this).prop('selected', false);
                 }).eq(0).prop("selected", "selected");
-                $('.ajax-form').attr('action', '/admin/menu');
+                $('.ajax-form').attr('action', '/admin/tools/book');
             });
-            $('body').on('click', '.menu_edit', function () {
-                $('#menu-select').hide();
-                $('.m-t-none').html('修改菜单');
+            $('body').on('click', '.book_edit', function () {
+                $('.m-t-none').html('修改分类/书籍');
                 $('.ajax-form').attr('method', 'put');
                 $('#name').val($(this).attr('data-name'));
                 $('#path').val($(this).attr('data-path'));
-                $('#icon').val($(this).attr('data-icon'));
-                $('.ajax-form').attr('action', '/admin/menu/' + $(this).attr('data-id'));
+                $('#size').val($(this).attr('data-size'));
+                $('select[name="pid"]').find("option[value=" + $(this).attr('data-pid') + "]").attr("selected", true);
+                $('.ajax-form').attr('action', '/admin/tools/book/' + $(this).attr('data-id'));
             });
             $(".ajax-form").on("success", function (event, result) {
                 if (result.state == 'success') {

@@ -1,4 +1,5 @@
 <div class="container">
+    <div class="text-center">本站点资源仅供学习之用，转载内容版权归原作者所有，任何人不得用于商业用途。</div>
     <footer class="footer">
         <p class="pull-right"><a href="#" rel="nofollow">回到顶端</a></p>
     </footer>

@@ -79,7 +79,7 @@
             window.location.href = '/book/' + id;
         });
 //        设置select
-        $("select[name='type']").find("option[value='" + {{ $params['type'] }} +"']").attr("selected", true);
+        $("select[name='type']").find("option[value='" + {{ $params['type'] or 0}} +"']").attr("selected", true);
     });
 </script>
 </body>

@@ -20,9 +20,8 @@
             <div class="ibox">
                 <div class="ibox-content">
 <div class="pull-right">
-
     <form action="/book" method="get">
-        类型：
+        <span style="color: #ff0000;">（本地下载练手用的，网速有限，请尽量使用网盘下载，谢谢！）&nbsp;&nbsp;</span>类型：
         <select name="type" style="margin: 0;padding: 0;height: 26px">
             <option value="">-- 全部 --</option>
             @foreach($types as $type)

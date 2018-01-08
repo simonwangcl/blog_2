@@ -65,6 +65,8 @@ class BookController extends Controller
      */
     public function show($id)
     {
+        ini_set('memory_limit', 1024 * 1024 * 500);
+
         $book = BookModel::find($id);
         if (!$book->toArray() || !$book->path) {
             return response()->json(['state' => 'error', 'message' => '书籍不存在！']);

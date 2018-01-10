@@ -24,17 +24,18 @@ class TagHelper
                 self::$tag = RedisDataHelper::fetch($key);
             }
         }
+
         return self::$tag;
     }
 
     public static function setTags($cache = 86400)//3600*24
     {
         $key = self::getTagKey();
-        $value = TagModel::with(['articles' => function($query){
-            return $query->select('state');
+        $value = TagModel::with(['articles' => function ($query) {
+            return $query->where('state', '1')->select('state');
         }])->get();
-        foreach ($value as &$tag){
-            if($tag->articles){
+        foreach ($value as &$tag) {
+            if ($tag->articles) {
                 $tag->articles = $tag->articles->count();
             }
         }

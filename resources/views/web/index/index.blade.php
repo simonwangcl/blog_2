@@ -27,10 +27,14 @@
                         </div>
                         <div class="page-header col-sm-12"></div>
                     @endforeach
-                    <div class="page-links">{{ $articles->links() }}</div>
-                    @else
-                    <p class="article-message">{{ $param['message'] or ''}}</p>
-                    @endif
+                        @if(isset($param['keywords']))
+                            <div class="page-links">{{ $articles->appends(['keywords' => $param['keywords']])->links() }}</div>
+                        @else
+                            <div class="page-links">{{ $articles->links() }}</div>
+                        @endif
+                @else
+                <p class="article-message">{{ $param['message'] or ''}}</p>
+                @endif
             </div>
         </div>
     </div>

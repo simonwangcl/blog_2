@@ -50,6 +50,7 @@ return [
     ".cer" => "application/x-x509-ca-cert",
     ".cgi" => "magnus-internal/cgi",
     ".chat" => "application/x-chat",
+    ".chm" => "application/octet-stream",
     ".class" => "application/octet-stream",
     ".clp" => "application/x-msclip",
     ".cmx" => "image/x-cmx",

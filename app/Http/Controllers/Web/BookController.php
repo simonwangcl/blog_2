@@ -80,10 +80,12 @@ class BookController extends Controller
         $type = '.' . pathinfo($book->path, PATHINFO_EXTENSION);
 
 //        文件的类型
-        header('Content-type: ' . config('mime')[$type]);//application/pdf
-//        下载显示的名字
-        header('Content-Disposition: attachment; filename="' . $book->name . $type . '"');
-        readfile("$filename");
+//        header('Content-type: ' . config('mime')[$type]);//application/pdf
+////        下载显示的名字
+//        header('Content-Disposition: attachment; filename="' . $book->name . $type . '"');
+//        readfile("$filename");
+//        生成强制用户浏览器下载指定路径文件的响应
+        return response()->download($filename, $book->name . $type);
     }
 
     /**

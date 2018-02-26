@@ -42,8 +42,11 @@ class ArrayHelper
             if ($value['target']) {
                 $html .= "&nbsp;&nbsp;&nbsp;&nbsp;( 新页面打开 ) ";
             }
+            if (!$value['state']) {
+                $html .= "&nbsp;&nbsp;&nbsp;&nbsp;( 不展示 ) ";
+            }
             $html .= '</span><span style="float:right;font-weight:normal">';
-            $html .= '<a data-toggle="modal" href="#modal-form" class="category_edit" data-id="' . $value['id'] . '" data-pid="' . $value['pid'] . '" data-name="' . $value['name'] . '" data-href="' . $value['href'] . '" data-tar="' . $value['target'] . '"> 编辑</a>';
+            $html .= '<a data-toggle="modal" href="#modal-form" class="category_edit" data-id="' . $value['id'] . '" data-pid="' . $value['pid'] . '" data-name="' . $value['name'] . '" data-href="' . $value['href'] . '" data-tar="' . $value['target'] . '" data-state="' . $value['state'] . '"> 编辑</a>';
             if (!count($value['children'])) {
                 $html .= '<a class="ajax-delete" href="/admin/category/' . $value['id'] . '" method="delete" confirm="确定删除该分类吗？"> 删除</a>';
             }

@@ -24,13 +24,14 @@ class CategoryHelper
                 self::$category = RedisMenuHelper::fetch($key);
             }
         }
+
         return self::$category;
     }
 
     public static function setCategory($cache = 86400)//3600*24
     {
         $key = self::getCategoryKey();
-        $value = CategoryModel::where('pid', 0)->with('children')->orderBy('rank')->get();
+        $value = CategoryModel::where('pid', 0)->where('state', 1)->with('children')->orderBy('rank')->get();
         RedisMenuHelper::save($key, $value, $cache);
     }
 }

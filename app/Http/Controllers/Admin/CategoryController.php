@@ -52,6 +52,7 @@ class CategoryController extends BaseController
         $name = $request->input('name');
         $href = $request->input('href');
         $target = $request->input('target');
+        $state = $request->input('state');
         $len = mb_strlen($name);
 
         if ($pid) {
@@ -69,6 +70,7 @@ class CategoryController extends BaseController
                 $category->name = $name;
                 $category->href = $href;
                 $category->target = $target;
+                $category->state = $state;
                 $category->save();
                 CategoryHelper::setCategory();
                 return response()->json(['state' => 'success', 'message' => '分类添加成功！']);
@@ -135,6 +137,7 @@ class CategoryController extends BaseController
             $name = $request->input('name');
             $href = $request->input('href');
             $target = $request->input('target');
+            $state = $request->input('state');
             $len = mb_strlen($name);
 
             if ($len >= 1 && $len <= 9) {
@@ -148,6 +151,7 @@ class CategoryController extends BaseController
                     $category->name = $name;
                     $category->href = $href;
                     $category->target = $target;
+                    $category->state = $state;
                     $category->save();
                     CategoryHelper::setCategory();
                     return response()->json(['state' => 'success', 'message' => '分类修改成功！']);

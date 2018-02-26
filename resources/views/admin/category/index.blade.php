@@ -81,6 +81,17 @@
             </div>
         </div>
         <div class="form-group">
+            <label class="col-sm-3 control-label">是否展示：</label>
+            <div class="col-sm-8">
+            <span class="radio i-checks" style="display: inline;">
+                <label><input type="radio" value="0" name="state"> <i></i> 否 </label>
+            </span>
+                <span class="radio i-checks" style="display: inline;">
+                <label><input type="radio" checked="checked" value="1" name="state"> <i></i> 是 </label>
+            </span>
+            </div>
+        </div>
+        <div class="form-group">
             <div class="col-sm-8 col-sm-offset-3">
                 <button class="btn btn-block btn-primary" type="submit">提 交</button>
             </div>
@@ -141,7 +152,8 @@
                 $('.ajax-form').attr('method', 'post');
                 $('#name').val('');
                 $('#href').val('');
-                $('input[type="radio"][value="0"]').iCheck('check');
+                $('input[type="radio"][name="target"][value="0"]').iCheck('check');
+                $('input[type="radio"][name="state"][value="1"]').iCheck('check');
                 $('select[name="pid"]').children('option').each(function () {
                     $(this).prop('selected', false);
                 });
@@ -153,7 +165,8 @@
                 $('.ajax-form').attr('method', 'put');
                 $('#name').val($(this).attr('data-name'));
                 $('#href').val($(this).attr('data-href'));
-                $('input[type="radio"]').eq($(this).attr('data-tar')).iCheck('check');
+                $('input[type="radio"][name="target"]').eq($(this).attr('data-tar')).iCheck('check');
+                $('input[type="radio"][name="state"]').eq($(this).attr('data-state')).iCheck('check');
                 $('.ajax-form').attr('action', '/admin/category/' + $(this).attr('data-id'));
             })
             $(".ajax-form").on("success", function (event, result) {

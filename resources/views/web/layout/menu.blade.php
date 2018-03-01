@@ -39,11 +39,13 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <h3>所有标签</h3>
                 @foreach($menuTags as $tag)
-                    <ul class="list-unstyled list-inline">
-                        <li class="tags{{ rand(1,12) }}">
-                            <a href="/?tag={{ $tag->id }}">{{ $tag->name }}({{ $tag->articles }})</a>
-                        </li>
-                    </ul>
+                    {{--@if($tag->articles)--}}
+                        <ul class="list-unstyled list-inline">
+                            <li class="tags{{ rand(1,12) }}">
+                                <a href="/?tag={{ $tag->id }}">{{ $tag->name }}({{ $tag->articles }})</a>
+                            </li>
+                        </ul>
+                    {{--@endif--}}
                 @endforeach
             </div>
         </div>
@@ -65,7 +67,7 @@
     @if($menuResumes->count())
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
-                <h3><a href="/about"  style="color: #333;">个人资料</a></h3>
+                <h3><a href="/about" style="color: #333;">个人资料</a></h3>
                 @foreach($menuResumes as $resume)
                     <p>{{ $resume->name }}：{{ $resume->content }}</p>
                 @endforeach

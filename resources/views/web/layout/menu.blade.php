@@ -39,13 +39,13 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <h3>所有标签</h3>
                 @foreach($menuTags as $tag)
-                    {{--@if($tag->articles)--}}
+                    @if($tag->articles)
                         <ul class="list-unstyled list-inline">
                             <li class="tags{{ rand(1,12) }}">
                                 <a href="/?tag={{ $tag->id }}">{{ $tag->name }}({{ $tag->articles }})</a>
                             </li>
                         </ul>
-                    {{--@endif--}}
+                    @endif
                 @endforeach
             </div>
         </div>
